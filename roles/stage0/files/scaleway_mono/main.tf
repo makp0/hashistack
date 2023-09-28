@@ -4,7 +4,7 @@ locals {
   instance_type              = var.instance_type
   instance_image             = var.instance_image
   instance_enable_ipv6       = true
-  instance_enable_dynamic_ip = true
+  instance_enable_dynamic_ip = false
   ssh_public_key_name        = "${local.instance_name_prefix}_key"
   ssh_public_key_file        = var.ssh_public_key_file
   raw_ssh_user               = "root"
