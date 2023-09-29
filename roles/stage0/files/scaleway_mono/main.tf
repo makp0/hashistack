@@ -28,7 +28,7 @@ resource "scaleway_instance_security_group" "server" {
   }
 }
 
-resource "scaleway_flexible_ip" "main" { }
+resource "scaleway_instance_ip" "main" {}
 
 resource "scaleway_instance_server" "mono" {
 
@@ -37,9 +37,8 @@ resource "scaleway_instance_server" "mono" {
   image = local.instance_image
 
   enable_ipv6       = local.instance_enable_ipv6
-  ip_id = scaleway_flexible_ip.main.id
+  ip_id = scaleway_instance_ip.main.id
 
   security_group_id = scaleway_instance_security_group.server.id
-  depends_on = [scaleway_flexible_ip.main]
 }
 
