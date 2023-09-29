@@ -40,5 +40,6 @@ resource "scaleway_instance_server" "mono" {
   ip_id = scaleway_flexible_ip.main.id
 
   security_group_id = scaleway_instance_security_group.server.id
+  depends_on = [scaleway_flexible_ip.main]
 }
 
