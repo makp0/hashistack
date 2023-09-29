@@ -4,7 +4,6 @@ locals {
   instance_type              = var.instance_type
   instance_image             = var.instance_image
   instance_enable_ipv6       = true
-  instance_enable_dynamic_ip = true
   ssh_public_key_name        = "${local.instance_name_prefix}_key"
   ssh_public_key_file        = var.ssh_public_key_file
   raw_ssh_user               = "root"
@@ -29,6 +28,8 @@ resource "scaleway_instance_security_group" "server" {
   }
 }
 
+resource "scaleway_flexible_ip" "main" { }
+
 resource "scaleway_instance_server" "mono" {
 
   name  = local.instance_name
@@ -36,7 +37,7 @@ resource "scaleway_instance_server" "mono" {
   image = local.instance_image
 
   enable_ipv6       = local.instance_enable_ipv6
-  enable_dynamic_ip = local.instance_enable_dynamic_ip
+  ip_id = scaleway_flexible_ip.main.id
 
   security_group_id = scaleway_instance_security_group.server.id
 }
