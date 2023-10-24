@@ -10,6 +10,7 @@
     hs_base_dir: "{{ lookup('env', 'PWD') }}/inventories"
     hs_archi: "{{ lookup('env', 'HS_ARCHI') }}"
     hs_dir_name: "hs_{{ hs_workspace | regex_replace('-','_') }}"
+    hs_instance_type: "{{ lookup('env', 'HS_INSTANCE_TYPE') | hs_stage0_instance_type}}"
 
   tasks:
     - name: Sanity checks
@@ -44,7 +45,7 @@
           {%- raw %}
           public_domain: "{{ hs_workspace }}.{{ hs_parent_domain }}"
           hs_stage0_archi: "{{ hs_archi }}"
-          hs_stage0_instance_type: "DEV1-M"
+          hs_stage0_instance_type: "{{ hs_instance_type }}"
           {% endraw -%}
 
     - name: Create inventory files
