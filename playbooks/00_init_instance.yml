@@ -10,7 +10,7 @@
     hs_base_dir: "{{ lookup('env', 'PWD') }}/inventories"
     hs_archi: "{{ lookup('env', 'HS_ARCHI') }}"
     hs_dir_name: "hs_{{ hs_workspace | regex_replace('-','_') }}"
-    hs_instance_type: "{{ lookup('env', 'HS_INSTANCE_TYPE') | default('DEV1-M') }}"
+    hs_instance_type: "{{ lookup('env', 'HS_INSTANCE_TYPE') | default('DEV1-M', true) }}"
 
   tasks:
     - name: Sanity checks
