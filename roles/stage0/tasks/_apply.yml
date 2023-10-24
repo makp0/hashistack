@@ -21,8 +21,8 @@
 
 - name: APPLY - Terraform output extract
   set_fact:
-    sre_ipv4: "{{ tf_result.outputs.sre_ipv4.value }}"
-    # sre_ipv4: "127.0.0.1"
+    # sre_ipv4: "{{ tf_result.outputs.sre_ipv4.value }}"
+    sre_ipv4: "localhost"
     sre_ipv6: "{{ tf_result.outputs.sre_ipv6.value }}"
     sre_private_ipv4: "{{ tf_result.outputs.sre_private_ipv4.value }}"
     current_ssh_user: "{{ tf_result.outputs.raw_ssh_user.value }}"
